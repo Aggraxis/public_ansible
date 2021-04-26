@@ -1,0 +1,23 @@
+---
+## This playbook installs updates from yum and APT
+
+- name: Install Updates from YUM and APT
+  hosts: all
+  gather_facts: yes
+  become: yes
+  become_method: sudo
+  vars_files: vars/ansible_vars.yml
+
+  tasks:
+   - name: install YUM updates (RHEL)
+     yum:
+        name: "*"
+        state: latest
+        update_cache: yes
+     when: ansible_os_family == "RedHat"
+   - name: install APT updates (Debian)
+     apt:
+        name: "*"
+        state: latest
+        update_cache: yes
+     when: ansible_os_family == "Debian"
