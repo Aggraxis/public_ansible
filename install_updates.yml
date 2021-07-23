@@ -6,7 +6,7 @@
   gather_facts: yes
   become: yes
   become_method: sudo
-  vars_files: vars/ansible_vars.yml
+#  vars_files: vars/ansible_vars.yml
 
   tasks:
    - name: install YUM updates (RHEL)
